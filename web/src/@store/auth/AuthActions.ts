@@ -4,15 +4,15 @@ import { axiosInstance as axios } from "@api/axios";
 import { AuthActionTypes } from "../redux/actionTypes";
 import { User } from "@models/User";
 
-export const submitRegister = (user: User, history: any) => {
+export const submitRegister = (username, email, password, history) => {
   return (dispatch) => {
     dispatch({
       type: AuthActionTypes.REGISTER_USER_START,
     });
     const request = {
-      email: user.email,
-      password: user.password,
-      userName: user.userName,
+      email: email,
+      password: password,
+      userName: username,
     };
     const url = getRegisterUrl();
     axios
@@ -55,7 +55,7 @@ const registerUserSuccess = (dispatch, data, history) => {
   axios.defaults.headers.common["Authorization"] = "Bearer " + data.accessToken;
   localStorage.setItem("access_token", data.accessToken);
   localStorage.setItem("userId", data._id);
-
+  toast.success(`${data?.username} Welcome to Streamlia`);
   dispatch({
     type: AuthActionTypes.REGISTER_USER_SUCCESS,
     payload: data,

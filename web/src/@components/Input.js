@@ -109,7 +109,7 @@ const MyInput = (props) => {
             props.rounded ? "rgba(30, 4, 7, 0.5)" : "#707070"
           }
           {...props}
-          onChange={changeHandler}
+          onChange={props.onChange}
           onblur={touchHandler}
           value={inputState.value}
         />

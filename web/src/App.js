@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./@layouts/Layout";
 import Home from "@modules/Home/Home";
@@ -9,15 +11,18 @@ import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/signup" component={Signup} />
-        <Layout>
-          <Route exact path="/streaming" component={Home} />
-        </Layout>
-      </Switch>
-    </Router>
+    <>
+      <ToastContainer />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/signup" component={Signup} />
+          <Layout>
+            <Route exact path="/streaming" component={Home} />
+          </Layout>
+        </Switch>
+      </Router>
+    </>
   );
 }
 
