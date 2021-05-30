@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Row, Text, Col, Box } from "@components";
+import SingleMessage from "./SingleMessage";
 
 const Chat = () => {
   return (
@@ -11,7 +12,12 @@ const Chat = () => {
         </Text>
         <Row></Row>
       </Row>
-      <Col pad="0 2rem"></Col>
+      <Col pad="1rem 1rem">
+        <SingleMessage />
+        <SingleMessage />
+        <SingleMessage />
+        <SingleMessage />
+      </Col>
     </Box>
   );
 };
