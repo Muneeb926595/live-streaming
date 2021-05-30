@@ -2,6 +2,7 @@ const textStyles = (props, css) => {
   return `
     color:  ${props.color ? props.color : "#1E0407"};
     font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: ${props.lineHeight ? props.lineHeight : "16px"};
     letter-spacing: ${props.letterSpacing ? props.letterSpacing : "0.2px"};
     background-color: transparent;
