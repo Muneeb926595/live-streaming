@@ -1,1 +1,1 @@
-# web-template
+# live streaming app front end repo
