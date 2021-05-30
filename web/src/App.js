@@ -1,23 +1,22 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React, { Suspense } from "react";
+import React from "react";
 
 import Layout from "./@layouts/Layout";
 import Home from "@modules/Home/Home";
+import Login from "@modules/Login/Login";
+import Signup from "@modules/Signup/Signup";
 import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <div className="background"></div>
-      <Suspense fallback={<div>Loading..</div>}>
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Layout>{/* <All app Modals /> */}</Layout>
-          </Switch>
-        </Router>
-      </Suspense>
-    </div>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
+        <Layout>{/* <All app Modals /> */}</Layout>
+      </Switch>
+    </Router>
   );
 }
 
