@@ -40,7 +40,7 @@ const buttonStyles = (props) => {
     `
     };
     ${(props.icon || props.rightIcon) && props.text && `flex-direction: row;`};
-    ${props.bordered && `border: 1px solid ${props.borderColor || "#e0e0e0"}`};
+    ${props.border && `border: ${props.border}`};
     ${props.marg && `margin: ${props.marg}`};
     ${props.secondary && `border-radius: 16px;`};
     ${props.textButton && `background-color: transparent;`};
