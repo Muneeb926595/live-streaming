@@ -11,10 +11,11 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Login} />
         <Route exact path="/signup" component={Signup} />
-        <Layout>{/* <All app Modals /> */}</Layout>
+        <Layout>
+          <Route exact path="/streaming" component={Home} />
+        </Layout>
       </Switch>
     </Router>
   );

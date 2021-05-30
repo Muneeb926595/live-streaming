@@ -38,5 +38,5 @@ const upload = multer({
   },
 });
 
-router.get("/testing", authController.testing);
+router.post("/auth/register", authController.registerUser);
 module.exports = router;

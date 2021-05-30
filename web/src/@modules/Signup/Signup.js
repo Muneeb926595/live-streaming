@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Col, Row, Text } from "@components";
+import { submitRegister } from "@store/auth/AuthActions";
 
 const Signup = () => {
   return (
