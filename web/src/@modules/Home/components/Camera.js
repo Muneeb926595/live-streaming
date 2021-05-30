@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 
 import { Box, Row, Col, Text } from "@components";
 import CameraOptions from "./CameraOptions";
+import { useCamera } from "@customeHooks";
 
 const Camera = () => {
+  const videoRef = useRef(null);
+  const constraints = {
+    audio: true,
+    video: {
+      width: 1280,
+      height: 720,
+    },
+  };
+  const mediaStream = useCamera(constraints);
+  if (mediaStream && videoRef.current && !videoRef.current.srcObject) {
+    videoRef.current.srcObject = mediaStream;
+  }
+  const handlePlay = () => {
+    videoRef.current.play();
+  };
   return (
     <Box wid="100%">
       <Row noFlex wid="100%" between center bg="#373737" pad="0 1rem">
@@ -12,11 +28,20 @@ const Camera = () => {
         </Text>
         <Row></Row>
       </Row>
-      <Col pad="0 2rem">
-        <Box wid="100%"></Box>
+      <Col noFlex>
+        <Box wid="100%">
+          <video
+            id="localVideo"
+            playsinline
+            autoplay
+            ref={videoRef}
+            onCanPlay={handlePlay}
+            muted
+          ></video>
+        </Box>
         <Box
           absolute
-          bottom="10%"
+          bottom="16%"
           left="35%"
           wid="24%"
           pad="20px"

@@ -5,7 +5,7 @@ import { Row, Col } from "@components";
 
 const Home = () => {
   return (
-    <Row marg="2rem 0 0 0" pad="2rem" ht="94vh">
+    <Row marg="2rem 0 0 0" pad="2rem" ht="88vh">
       <Col bg="#1f1f1f" noFlex wid="16%" hasRadius="10px">
         <Watchers />
       </Col>
