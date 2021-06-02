@@ -59,17 +59,17 @@ const MyInput = (props) => {
     isTouched: false,
     isValid: props.initialValid || false,
   });
-  //   const { value, isValid } = inputState;
-  //   const { id, onInput } = props;
+  const { value, isValid } = inputState;
+  const { id, onInput } = props;
 
-  //   useEffect(() => {
-  //     onInput(id, value, isValid);
-  //   }, [id, value, isValid, onInput]);
+  useEffect(() => {
+    onInput(id, value, isValid);
+  }, [id, value, isValid, onInput]);
 
   const changeHandler = (event) => {
     dispatch({
       type: "CHANGE",
-      val: event.nativeEvent.text,
+      val: event.target.value,
       validators: props.validators,
     });
   };
@@ -109,7 +109,7 @@ const MyInput = (props) => {
             props.rounded ? "rgba(30, 4, 7, 0.5)" : "#707070"
           }
           {...props}
-          onChange={props.onChange}
+          onChange={changeHandler}
           onblur={touchHandler}
           value={inputState.value}
         />

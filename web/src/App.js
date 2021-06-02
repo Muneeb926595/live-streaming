@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./@layouts/Layout";
 import Home from "@modules/Home/Home";
+import Streams from "@modules/Streams/Streams";
 import Login from "@modules/Login/Login";
 import Signup from "@modules/Signup/Signup";
 import "./App.css";
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Layout>
+            <Route exact path="/live-streams" component={Streams} />
             <Route exact path="/streaming" component={Home} />
           </Layout>
         </Switch>

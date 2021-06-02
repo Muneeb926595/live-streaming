@@ -27,6 +27,22 @@ const AuthReducer = (
         loading: false,
       };
     }
+    case AuthActionTypes.LOGIN_USER_START: {
+      return { ...state, loading: true };
+    }
+    case AuthActionTypes.LOGIN_USER_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case AuthActionTypes.LOGIN_USER_FAIL: {
+      return {
+        ...state,
+        user: action.payload,
+        loading: false,
+      };
+    }
 
     default: {
       return state;

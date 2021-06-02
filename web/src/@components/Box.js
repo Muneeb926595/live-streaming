@@ -8,6 +8,7 @@ const Box = styled.div`
      width:0px;
 }`};
   ${(props) => props.cursorPointer && `cursor:pointer;`};
+  ${(props) => `position:relative;`};
   ${(props) => boxStyles(props, css)}
 `;
 

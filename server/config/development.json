@@ -7,7 +7,7 @@
   "host": "http://localhost",
   "DataBase_Name": "projectname_dev",
   "mongoDb": {
-    "uri": "mongodb://localhost/foodbook",
+    "uri": "mongodb://localhost/streaming",
     "port": "27017",
     "username": "username",
     "password": "password db"

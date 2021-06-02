@@ -1,11 +1,13 @@
-import React, { useState } from "react";
 import { toast } from "react-toastify";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { Col, Icon, Row, Text, Input, Button } from "@components";
 import { submitRegister } from "@store/auth/AuthActions";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const [username, setUsername] = useState("");
@@ -23,7 +25,7 @@ const Signup = () => {
     } else if (password?.length < 6) {
       return toast.error("Password must be 6 characters long");
     } else {
-      submitRegister(username, email, password, history);
+      dispatch(submitRegister(username, email, password, history));
     }
   };
   return (
@@ -51,30 +53,79 @@ const Signup = () => {
         </Row>
         <Col noFlex wid="20rem">
           <Row noFlex marg="0 0 1rem 0">
-            <Input
+            {/* <Input
               placeholder={"Username"}
               onChange={(event) => {
                 setUsername(event.nativeEvent.text);
               }}
               bg="#222222"
+            /> */}
+            <input
+              placeholder={"Username"}
+              value={username}
+              onChange={(event) => {
+                setUsername(event.target.value);
+              }}
+              style={{
+                width: "100%",
+                background: "#222222",
+                outline: "none",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: "6px",
+                color: "#bfbfbf",
+              }}
             />
           </Row>
           <Row noFlex marg="0 0 1rem 0">
-            <Input
+            {/* <Input
               placeholder={"Email"}
               onChange={(event) => {
                 setEmail(event.nativeEvent.text);
               }}
               bg="#222222"
+            /> */}
+            <input
+              placeholder={"Email"}
+              value={email}
+              style={{
+                width: "100%",
+                background: "#222222",
+                outline: "none",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: "6px",
+                color: "#bfbfbf",
+              }}
+              onChange={(event) => {
+                setEmail(event.target.value);
+              }}
             />
           </Row>
           <Row noFlex>
-            <Input
+            {/* <Input
               placeholder={"Password"}
               onChange={(event) => {
                 setPassword(event.nativeEvent.text);
               }}
               bg="#222222"
+            /> */}
+            <input
+              placeholder={"Password"}
+              type="password"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
+              style={{
+                width: "100%",
+                background: "#222222",
+                outline: "none",
+                border: "none",
+                padding: "1rem 2rem",
+                borderRadius: "6px",
+                color: "#bfbfbf",
+              }}
             />
           </Row>
         </Col>

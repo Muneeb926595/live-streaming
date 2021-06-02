@@ -1,3 +1,4 @@
+const bycrypt = require("bcryptjs");
 const { User, validateUser } = require("../../models/auth/user");
 
 exports.registerUser = async (req, res, next) => {
@@ -32,4 +33,31 @@ exports.registerUser = async (req, res, next) => {
   return res
     .status(200)
     .send({ _id: result._id, accessToken, username: result.userName });
+};
+
+exports.loginUser = async (req, res, next) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({
+    $or: [{ email: email }, { userName: email }],
+  });
+  if (!user) {
+    return res.status(400).send("Email not found");
+  }
+
+  const isUserCorrect = await bycrypt.compare(password, user.password);
+
+  if (!isUserCorrect) {
+    return res.status(400).send("Password is invalid!");
+  }
+  const accessToken = user.getAuthToken();
+
+  if (user.deleteMyAccount && user.deleteMyAccount == "yes") {
+    const client = {
+      deleteMyAccount: "no",
+      deactivationDate: "",
+    };
+    const updatedUser = await User.findByIdAndUpdate(user._id, client);
+  }
+
+  return res.status(200).send({ _id: user._id, accessToken });
 };

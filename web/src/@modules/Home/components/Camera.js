@@ -37,6 +37,9 @@ const Camera = () => {
             ref={videoRef}
             onCanPlay={handlePlay}
             muted
+            style={{
+              transform: "scaleX(-1)",
+            }}
           ></video>
         </Box>
         <Box
