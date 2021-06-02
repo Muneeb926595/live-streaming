@@ -47,4 +47,43 @@ io.on("connection", (socket) => {
   socket.on("join", (roomNo) => {
     socket.join(roomNo);
   });
+
+  socket.on(
+    "broadcaster",
+    ({ broadcasterId, streamTitle, hostName, hostImage, tags }) => {
+      socket.broadcast.emit("broadcaster", {
+        broadcasterId,
+        streamTitle,
+        hostName,
+        hostImage,
+        tags,
+      });
+    }
+  );
+  socket.on("new-watcher-joined", ({ broadcasterId, watchersCount }) => {
+    io.emit("new-watcher-joined", {
+      broadcasterId,
+      watchersCount,
+    });
+  });
+  socket.on("watcher", (broadcasterId) => {
+    socket.to(broadcasterId).emit("watcher", socket.id);
+  });
+  socket.on("offer", (id, message) => {
+    socket.to(id).emit("offer", socket.id, message);
+  });
+  socket.on("answer", (id, message) => {
+    socket.to(id).emit("answer", socket.id, message);
+  });
+  socket.on("candidate", (id, message) => {
+    socket.to(id).emit("candidate", socket.id, message);
+  });
+
+  socket.on("new-broadcaster", (broadcaster) => {
+    socket.broadcast.emit("active-broadcaster", broadcaster);
+  });
+
+  socket.on("watcher-disconnect", () => {
+    socket.emit("disconnectPeer", socket.id);
+  });
 });

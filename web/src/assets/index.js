@@ -10,6 +10,7 @@ export const icons = {
   "blue-star": require("./icons/blue-star.png"),
   "white-dot": require("./icons/white-dot.png"),
   "block-user": require("./icons/block-user.png"),
+  "add-stream": require("./icons/add-stream.png"),
   "post-delete": require("./icons/post-delete.png"),
   "micro-phone": require("./icons/micro-phone.png"),
   "post-report": require("./icons/post-report.png"),

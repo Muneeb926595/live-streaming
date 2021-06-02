@@ -1,8 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
-import { Row, StreamCard } from "@components";
+import { Clickable, StreamCard, CreateStreamCard } from "@components";
 
 const Streams = () => {
+  const history = useHistory();
   return (
     <div
       style={{
@@ -11,10 +13,13 @@ const Streams = () => {
         overflow: "scroll",
         overflowX: "hidden",
         backgroundColor: "#080707",
-        padding: "12vh 6vw",
+        padding: "12vh 9vw",
       }}
     >
       <div style={{ display: "flex", flexWrap: "wrap" }}>
+        <Clickable onClick={() => history.push("/live-streaming")}>
+          <CreateStreamCard />
+        </Clickable>
         <StreamCard />
         <StreamCard />
         <StreamCard />

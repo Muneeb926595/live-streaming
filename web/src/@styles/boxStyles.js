@@ -11,14 +11,17 @@ const boxStyles = (props) => {
     ${props.hasShadow && `box-shadow: ${props.hasShadow}`};
     ${props.alignSelf && `align-self: ${props.alignSelf}`};
     ${props.border && `border: ${props.border}`};
-    ${props.centerAll &&
-    `
+    ${
+      props.centerAll &&
+      `
+    display:flex;
       align-items: center;
       justify-content: center;
     `
     };
-    ${props.center &&
-    `
+    ${
+      props.center &&
+      `
       align-items: center;
     `
     };
@@ -33,7 +36,7 @@ const boxStyles = (props) => {
     ${props.overflow && `overflow:${props.overflow};`};
     ${props.overflowX && `overflow-x:${props.overflowX};`};
     ${props.overflowY && `overflow-y:${props.overflowY};`};
-  `
-}
+  `;
+};
 
-export default boxStyles
+export default boxStyles;
