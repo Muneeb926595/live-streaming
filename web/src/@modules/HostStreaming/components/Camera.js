@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
+import React from "react";
 
 import { Box, Row, Col, Text } from "@components";
 import CameraOptions from "./CameraOptions";
 import { useCamera } from "@customeHooks";
 
-const Camera = () => {
-  const videoRef = useRef(null);
+const Camera = ({ videoRef }) => {
   const constraints = {
     audio: true,
     video: {
@@ -20,6 +19,9 @@ const Camera = () => {
   const handlePlay = () => {
     videoRef.current.play();
   };
+
+  //live streaming starts from here
+
   return (
     <Box wid="100%">
       <Row noFlex wid="100%" between center bg="#373737" pad="0 1rem">
@@ -44,7 +46,7 @@ const Camera = () => {
         </Box>
         <Box
           absolute
-          bottom="16%"
+          bottom="10%"
           left="35%"
           wid="24%"
           pad="20px"

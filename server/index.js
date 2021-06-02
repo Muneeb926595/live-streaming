@@ -48,42 +48,36 @@ io.on("connection", (socket) => {
     socket.join(roomNo);
   });
 
-  socket.on(
-    "broadcaster",
-    ({ broadcasterId, streamTitle, hostName, hostImage, tags }) => {
-      socket.broadcast.emit("broadcaster", {
-        broadcasterId,
-        streamTitle,
-        hostName,
-        hostImage,
-        tags,
-      });
-    }
-  );
+  socket.on("broadcaster", ({ broadcasterId }) => {
+    socket.broadcast.emit("broadcaster", {
+      broadcasterId,
+    });
+  });
+
   socket.on("new-watcher-joined", ({ broadcasterId, watchersCount }) => {
     io.emit("new-watcher-joined", {
       broadcasterId,
       watchersCount,
     });
   });
-  socket.on("watcher", (broadcasterId) => {
-    socket.to(broadcasterId).emit("watcher", socket.id);
+  socket.on("watcher", (broadcasterId, watcherId) => {
+    socket.to(broadcasterId).emit("watcher", broadcasterId, watcherId);
   });
-  socket.on("offer", (id, message) => {
-    socket.to(id).emit("offer", socket.id, message);
+  socket.on("offer", (broadcasterId, watcherId, message) => {
+    socket.to(watcherId).emit("offer", broadcasterId, message);
   });
-  socket.on("answer", (id, message) => {
-    socket.to(id).emit("answer", socket.id, message);
+  socket.on("answer", (broadcasterId, watcherId, message) => {
+    socket.to(broadcasterId).emit("answer", watcherId, message);
   });
-  socket.on("candidate", (id, message) => {
-    socket.to(id).emit("candidate", socket.id, message);
+  socket.on("candidate", (broadcasterId, watcherId, message) => {
+    socket.to(watcherId).emit("candidate", broadcasterId, message);
   });
 
   socket.on("new-broadcaster", (broadcaster) => {
     socket.broadcast.emit("active-broadcaster", broadcaster);
   });
 
-  socket.on("watcher-disconnect", () => {
-    socket.emit("disconnectPeer", socket.id);
+  socket.on("watcher-disconnect", (watcherId) => {
+    socket.emit("disconnectPeer", watcherId);
   });
 });
