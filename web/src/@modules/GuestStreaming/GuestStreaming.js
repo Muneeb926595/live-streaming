@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
-import { Watchers, Chat, Header, Camera, StreamingStatus } from "./components";
-import { Row, Col } from "@components";
+import { Watchers, Chat, StreamingStatus } from "./components";
+import { Row, Col, Box, Text } from "@components";
 import { config } from "@helpers/streaming";
 import { socket } from "@helpers/sockets";
 
@@ -74,7 +74,6 @@ const GuestStreaming = (props) => {
           );
         });
       peerConnection.ontrack = (event) => {
-        console.log("got the stream with", event.streams[0]);
         videoRef.current.srcObject = event.streams[0];
       };
       peerConnection.onicecandidate = (event) => {
@@ -108,7 +107,23 @@ const GuestStreaming = (props) => {
           <Watchers />
         </Col>
         <Col bg="#1f1f1f" marg="0 1.4rem" hasRadius="10px">
-          <Camera videoRef={videoRef} />
+          <Box wid="100%">
+            <Row noFlex wid="100%" between center bg="#373737" pad="0 1rem">
+              <Text color="#ffffff" size="12px" weight="bold">
+                Host Stream
+              </Text>
+              <Row></Row>
+            </Row>
+            <Col noFlex>
+              <Box wid="100%">
+                <video
+                  style={{ width: "100%", height: "100%" }}
+                  autoPlay={true}
+                  ref={videoRef}
+                />
+              </Box>
+            </Col>
+          </Box>
         </Col>
         <Col noFlex wid="20%">
           <Row marg="0 0 1rem 0" bg="#1f1f1f" hasRadius="10px">
