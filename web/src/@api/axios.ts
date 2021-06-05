@@ -2,7 +2,7 @@ import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import { useHistory } from "react-router-dom";
 
 export const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000/api/",
+  baseURL: "https://streamily.herokuapp.com/api/",
 });
 const ResponseInterceptor = (response: AxiosResponse) => {
   return response;
